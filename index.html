@@ -1,952 +1,459 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Cường &hearts; Hà</title>
-    <link
-      rel="preconnect"
-      href="https://fonts.gstatic.com"
-      crossorigin="crossorigin"
-    />
-    <link
-      rel="preload"
-      as="style"
-      href="https://fonts.googleapis.com/css2?family=Dosis:wght@400;500&amp;display=swap"
-    />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Dosis:wght@400;500&amp;display=swap"
-      media="print"
-      onload="this.media='all'"
-    />
-    <noscript>
-      <link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Dosis:wght@400;500&amp;display=swap"
-      />
-    </noscript>
-    <link
-      rel="preconnect"
-      href="https://fonts.gstatic.com"
-      crossorigin="crossorigin"
-    />
-    <link
-      rel="preload"
-      as="style"
-      href="https://fonts.googleapis.com/css2?family=Great+Vibes&amp;display=swap"
-    />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Great+Vibes&amp;display=swap"
-      media="print"
-      onload="this.media='all'"
-    />
-    <noscript>
-      <link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Great+Vibes&amp;display=swap"
-      />
-    </noscript>
-    <link
-      rel="apple-touch-icon"
-      sizes="180x180"
-      href="images/favicon/apple-touch-icon.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="images/favicon/favicon-32x32.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="images/favicon/favicon-16x16.png"
-    />
-    <link href="css/bootstrap.min.css?ver=1.1.0" rel="stylesheet" />
-    <link href="css/font-awesome/css/all.min.css?ver=1.1.0" rel="stylesheet" />
-    <link href="css/aos.css?ver=1.1.0" rel="stylesheet" />
-    <link href="css/ekko-lightbox.css?ver=1.1.0" rel="stylesheet" />
-    <link href="css/main.css?ver=1.1.0" rel="stylesheet" />
-    <link rel="stylesheet" href="css/owl.carousel.min.css" />
-    <link rel="stylesheet" href="css/owl.theme.default.min.css" />
-    <link rel="stylesheet" href="css/animate.css" />
-    <link rel="stylesheet" href="css/style.css" />
-    <noscript>
-      <style type="text/css">
-        [data-aos] {
-          opacity: 1 !important;
-          transform: translate(0) scale(1) !important;
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chơi Tá Lả</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js"></script>
+
+    <style>
+      /* CSS */
+      .button-74 {
+        background-color: #fbeee0;
+        border: 2px solid #422800;
+        border-radius: 30px;
+        box-shadow: #422800 4px 4px 0 0;
+        color: #422800;
+        cursor: pointer;
+        display: inline-block;
+        font-weight: 600;
+        font-size: 18px;
+        padding: 0 18px;
+        line-height: 50px;
+        text-align: center;
+        text-decoration: none;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+      }
+
+      .button-74:hover {
+        background-color: #fff;
+      }
+
+      .button-74:active {
+        box-shadow: #422800 2px 2px 0 0;
+        transform: translate(2px, 2px);
+      }
+
+      @media (min-width: 768px) {
+        .button-74 {
+          min-width: 120px;
+          padding: 0 25px;
         }
-      </style>
-    </noscript>
+      }
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        margin: 0;
+        padding: 0;
+      }
+      .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      h2 {
+        text-align: center;
+        color: #333;
+      }
+      .player-form {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 20px;
+      }
+      .player-form input,
+      .player-form button {
+        padding: 10px;
+        margin: 5px 0;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+      .player-form button {
+        background-color: #4caf50;
+        color: white;
+        cursor: pointer;
+      }
+      .game-board {
+        display: none;
+        height: 100vh;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        gap: 10px;
+        padding: 10px;
+      }
+      .player-box {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+        background-color: #f9f9f9;
+        border-radius: 10px;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        text-align: center;
+      }
+      .player-box span {
+        font-size: 16px;
+        font-weight: bold;
+      }
+      .action-buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        width: 100%;
+      }
+      .action-buttons button {
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+      }
+      .btn-leaf {
+        background-color: #4caf50;
+        color: white;
+      }
+      .btn-knot {
+        background-color: #2196f3;
+        color: white;
+      }
+      .btn-win {
+        background-color: #ffc107;
+        color: white;
+      }
+      .btn-penalty {
+        background-color: #f44336;
+        color: white;
+      }
+
+      .amount-inputs {
+        /* display: flex; */
+        justify-content: space-between;
+        gap: 10px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+      }
+      .amount-inputs input {
+        flex: 1;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        text-align: center;
+        font-size: 16px;
+        width: -webkit-fill-available;
+        margin: 5px;
+      }
+
+      @media (max-width: 600px) {
+        .container {
+          max-width: 100%;
+          padding: 10px;
+          box-shadow: none;
+          border-radius: 0;
+        }
+        .game-board {
+          /* grid-template-columns: repeat(1, 1fr);  */
+          grid-template-rows: repeat(4, 1fr);
+        }
+        .player-box {
+          flex-direction: column;
+          gap: 20px;
+          justify-content: space-evenly;
+        }
+      }
+    </style>
   </head>
-  <body id="top">
-    <header></header>
-    <div class="page-content">
-      <div class="div">
-        <div class="ww-home-page" id="home">
-          <div
-            class="ww-wedding-announcement d-flex align-items-center justify-content-start"
-          >
-            <div class="container ww-announcement-container">
-              <p
-                class="ww-couple-name ww-title"
-                data-aos="zoom-in-down"
-                data-aos-delay="300"
-                data-aos-duration="1000"
-              >
-                Văn Cường & Ngọc Hà
-              </p>
-              <img
-                class="img-fluid mt-1"
-                src="images/laurel-1.png"
-                alt="Heart"
-                data-aos="zoom-in-down"
-                data-aos-delay="300"
-                data-aos-duration="1000"
-              />
-              <p
-                class="h2 mt-5 ww-title"
-                data-aos="zoom-in-down"
-                data-aos-delay="300"
-                data-aos-duration="1000"
-                data-aos-offset="10"
-              >
-                13/10/2024
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="ww-nav-bar sticky-top bg-light">
-          <nav class="navbar navbar-expand-lg navbar-light">
-            <div class="container">
-              <a href="#"
-                ><svg class="heart" viewBox="0 0 32 29.6">
-                  <path
-                    d="M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,21.2c6.1-9.3,16-12.1,16-21.2C32,3.8,28.2,0,23.6,0z"
-                  /></svg
-              ></a>
-              <h1 class="h2">
-                <a class="pl-4 navbar-brand" href="#">Văn Cường & Ngọc Hà</a>
-              </h1>
-              <button
-                class="navbar-toggler"
-                type="button"
-                data-toggle="collapse"
-                data-target="#ww-navbarNav"
-                aria-controls="ww-navbarNav"
-                aria-expanded="false"
-                aria-label="Toggle navigation"
-              >
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <div
-                class="collapse navbar-collapse text-uppercase"
-                id="ww-navbarNav"
-              >
-                <ul class="navbar-nav ml-auto">
-                  <li class="nav-item">
-                    <a class="nav-link smooth-scroll" href="#home">Trang chủ</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link smooth-scroll" href="#couple"
-                      >Cô dâu & chú rể</a
-                    >
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link smooth-scroll" href="#events">Sự kiện</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link smooth-scroll" href="#banking"
-                      >Mừng cưới</a
-                    >
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link smooth-scroll" href="#gallery"
-                      >Kho ảnh</a
-                    >
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link smooth-scroll" href="#wish-section"
-                      >Lời chúc</a
-                    >
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link smooth-scroll" href="#rsvp"
-                      >Gửi lời chúc</a
-                    >
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </nav>
-        </div>
-        <div class="ww-section" id="couple">
-          <div class="container">
-            <h2
-              class="h1 text-center pb-3 ww-title"
-              data-aos="zoom-in-down"
-              data-aos-duration="1000"
-            >
-              Chú rể & Cô dâu
-            </h2>
-            <div class="row text-center">
-              <div class="col-md-6">
-                <div class="mt-3">
-                  <img
-                    class="img-fluid"
-                    loading="lazy"
-                    src="images/groom.jpg"
-                    alt="Groom"
-                    data-aos="flip-left"
-                    data-aos-duration="1000"
-                  />
-                  <p class="pt-3 text-left text-muted"></p>
-                  <h3 class="h2 ww-title">Văn Cường</h3>
-                  <!-- <div class="ww-social-links">
-                    <a
-                      class="btn btn-link"
-                      target="_blank"
-                      href="https://www.facebook.com/profile.php?id=100034092522981"
-                      ><i class="fab fa-facebook-f" aria-hidden="true"></i
-                    ></a>
-                  </div> -->
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="mt-3">
-                  <img
-                    class="img-fluid"
-                    loading="lazy"
-                    src="images/bride.jpg"
-                    alt="Bride"
-                    data-aos="flip-right"
-                    data-aos-duration="1000"
-                  />
-                  <p class="pt-3 text-left text-muted"></p>
-                  <h3 class="h2 ww-title">Ngọc Hà</h3>
-                  <!-- <div class="ww-social-links">
-                    <a
-                      class="btn btn-link"
-                      target="_blank"
-                      href="https://www.facebook.com/oc.tothi"
-                      ><i class="fab fa-facebook-f" aria-hidden="true"></i
-                    ></a>
-                  </div> -->
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="ww-section bg-light" id="events">
-          <div class="container ww-wedding-event">
-            <h2
-              class="h1 text-center pb-3 ww-title"
-              data-aos="zoom-in-down"
-              data-aos-duration="1000"
-            >
-              Sự kiện
-            </h2>
-            <div class="row">
-              <div class="col-md-12 col-sm-12">
-                <div class="my-3">
-                  <div class="h4">Tiệc Cưới Nhà Trai</div>
-                  <ul>
-                    <li>
-                      <i class="text-muted fas fa-map-marker-alt"></i
-                      ><span class="pl-2 text-muted"
-                        >Xóm 3, Thôn Dương Cốc, Xã Đồng Quang, huyện Quốc Oai, Tp Hà Nội</span
-                      >
-                    </li>
-                    <li class="pt-2">
-                      <i class="text-muted far fa-calendar-alt"></i
-                      ><span class="pl-2 text-muted">13/10/2024, 13:00PM</span>
-                    </li>
-                    <li class="pt-2">
-                      <i class="text-muted fas fa-route"></i
-                      ><a target="_blank" href="https://maps.app.goo.gl/coFczZ76uv3qoddn6" class="pl-2">Xem trên Google Maps</a>
-                    </li>
-                  </ul>
-                  <p></p>
-                </div>
-              </div>
-              <!-- <div class="col-md-5 col-sm-12">
-                <div class="my-3"><img class="img-fluid" loading="lazy" style="background-color: rgba(0, 0, 0, 0); max-width:50% !important; margin-left: auto;margin-right: auto;display: block;" src="images/qr-address-lam.png" alt="Wedding Party" data-aos="fade-down-right" data-aos-duration="1000"/></div>
-              </div> -->
-            </div>
-            <div class="row">
-              <div class="col-md-12 col-sm-12">
-                <div class="my-3">
-                  <div class="h4">Tiệc Cưới Nhà Gái</div>
-                  <ul>
-                    <li>
-                      <i class="text-muted fas fa-map-marker-alt"></i
-                      ><span class="pl-2 text-muted"
-                        >Phố Phan Đình Phùng,Thị Trấn Quảng Hà,Hải Hà,Quảng Ninh</span
-                      >
-                    </li>
-                    <li class="pt-2">
-                      <i class="text-muted far fa-calendar-alt"></i
-                      ><span class="pl-2 text-muted">20/10/2024, 10:00AM</span>
-                    </li>
-                    <li class="pt-2">
-                      <i class="text-muted fas fa-route"></i
-                      ><a target="_blank" href="https://maps.app.goo.gl/X21KJDf8mQ8KSGCF7" class="pl-2">Xem trên Google Maps</a>
-                    </li>
-                  </ul>
-                  <p></p>
-                </div>
-              </div>
-              <!-- <div class="col-md-5 col-sm-12">
-                <div class="my-3"><img class="img-fluid" loading="lazy" style="background-color: rgba(0, 0, 0, 0); max-width:50% !important; margin-left: auto;margin-right: auto;display: block;" src="images/qr-address-giang.png" alt="Reception" data-aos="fade-up-right" data-aos-duration="1000"/></div>
-              </div> -->
-            </div>
-          </div>
-        </div>
-
-        <div class="ww-section" id="banking">
-          <div class="container">
-            <h2
-              class="h1 text-center pb-3 ww-title"
-              data-aos="zoom-in-down"
-              data-aos-duration="1000"
-            >
-              Mừng cưới
-            </h2>
-            <div class="row text-center">
-              <div class="col-md-6">
-                <div class="mt-3">
-                  <button
-                    class="btn btn-primary btn-block"
-                    onclick="banking('lamnx')"
-                  >
-                    Mừng cưới chú rể
-                  </button>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="mt-3">
-                  <button
-                    class="btn btn-primary btn-block"
-                    onclick="banking('gianglt')"
-                  >
-                    Mừng cưới cô dâu
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="ww-section bg-light" id="thank-you">
-          <div class="container text-center">
-            <h2 class="h1 pb-3 ww-title" data-aos="zoom-in-down" data-aos-duration="1000">
-              Cảm Ơn
-            </h2>
-            <p class="h5">
-              Thật vui vì được gặp và đón tiếp các bạn trong một dịp
-            </p>
-            <p class="h5">
-              đặc biệt như đám cưới của chúng tôi.Chúng tôi muốn
-            </p>
-            <p class="h5">
-              gửi đến bạn những lời cảm ơn sâu sắc nhất và để bạn
-            </p>
-            <p class="h5">
-              biết chúng tôi rất hạnh phúc khi thấy bạn ở đó. Cảm ơn
-            </p>
-            <p class="h5">
-              các bạn rất nhiều vì sự hiện diện cùng những lời chúc
-            </p>
-            <p class="h5">
-              tốt đẹp mà bạn dành cho chúng tôi!
-            </p>
-            <!-- Nếu bạn muốn thêm hình ảnh hoặc biểu tượng cảm ơn, có thể thêm ở đây -->
-            <img
-              class="img-fluid mt-3"
-              src="images/camon.jpeg"
-              alt="Thank You"
-              data-aos="fade-up"
-              data-aos-duration="1000"
-            />
-          </div>
-        </div>
-
-        <div class="ww-section bg-light" id="gallery">
-          <div class="ww-photo-gallery">
-            <div class="container">
-              <!-- <h2
-                class="h1 text-center pb-3 ww-title"
-                data-aos="zoom-in-down"
-                data-aos-duration="1000"
-              >
-                Kho ảnh
-              </h2> -->
-              <div
-                class="ww-gallery"
-                data-aos="fade-zoom-in"
-                data-aos-easing="ease-in-back"
-                data-aos-delay="300"
-                data-aos-duration="1000"
-                data-aos-offset="0"
-              >
-                <div class="card-columns">
-                  <div class="card">
-                    <a
-                      href="images/1.jpg"
-                      data-toggle="lightbox"
-                      data-gallery="ww-gallery"
-                      ><img
-                        class="img-fluid"
-                        loading="lazy"
-                        src="images/1.jpg"
-                        alt="Gallery Pic 1"
-                    /></a>
-                  </div>
-                  <div class="card">
-                    <a
-                      href="images/2.jpg"
-                      data-toggle="lightbox"
-                      data-gallery="ww-gallery"
-                      ><img
-                        class="img-fluid"
-                        loading="lazy"
-                        src="images/2.jpg"
-                        alt="Gallery Pic 2"
-                    /></a>
-                  </div>
-                  <!-- <div class="card">
-                    <a
-                      href="images/3.jpg"
-                      data-toggle="lightbox"
-                      data-gallery="ww-gallery"
-                      ><img
-                        class="img-fluid"
-                        loading="lazy"
-                        src="images/3.jpg"
-                        alt="Gallery Pic 3"
-                    /></a>
-                  </div>
-                  <div class="card">
-                    <a
-                      href="images/4.jpg"
-                      data-toggle="lightbox"
-                      data-gallery="ww-gallery"
-                      ><img
-                        class="img-fluid"
-                        loading="lazy"
-                        src="images/4.jpg"
-                        alt="Gallery Pic 4"
-                    /></a>
-                  </div>
-                  <div class="card">
-                    <a
-                      href="images/5.jpg"
-                      data-toggle="lightbox"
-                      data-gallery="ww-gallery"
-                      ><img
-                        class="img-fluid"
-                        loading="lazy"
-                        src="images/5.jpg"
-                        alt="Gallery Pic 5"
-                    /></a>
-                  </div>
-                  <div class="card">
-                    <a
-                      href="images/6.jpg"
-                      data-toggle="lightbox"
-                      data-gallery="ww-gallery"
-                      ><img
-                        class="img-fluid"
-                        loading="lazy"
-                        src="images/6.jpg"
-                        alt="Gallery Pic 6"
-                    /></a>
-                  </div>
-                  <div class="card">
-                    <a
-                      href="images/7.jpg"
-                      data-toggle="lightbox"
-                      data-gallery="ww-gallery"
-                      ><img
-                        class="img-fluid"
-                        loading="lazy"
-                        src="images/7.jpg"
-                        alt="Gallery Pic 7"
-                    /></a>
-                  </div>
-                  <div class="card">
-                    <a
-                      href="images/8.jpg"
-                      data-toggle="lightbox"
-                      data-gallery="ww-gallery"
-                      ><img
-                        class="img-fluid"
-                        loading="lazy"
-                        src="images/8.jpg"
-                        alt="Gallery Pic 8"
-                    /></a>
-                  </div>
-                  <div class="card">
-                    <a
-                      href="images/9.jpg"
-                      data-toggle="lightbox"
-                      data-gallery="ww-gallery"
-                    >
-                      <img
-                        class="img-fluid"
-                        loading="lazy"
-                        src="images/9.jpg"
-                        alt="Gallery Pic 9"
-                      />
-                    </a>
-                  </div>
-
-                  <div class="card">
-                    <a
-                      href="images/10.jpg"
-                      data-toggle="lightbox"
-                      data-gallery="ww-gallery"
-                    >
-                      <img
-                        class="img-fluid"
-                        loading="lazy"
-                        src="images/10.jpg"
-                        alt="Gallery Pic 10"
-                      />
-                    </a>
-                  </div>
-
-                  <div class="card">
-                    <a
-                      href="images/11.jpg"
-                      data-toggle="lightbox"
-                      data-gallery="ww-gallery"
-                    >
-                      <img
-                        class="img-fluid"
-                        loading="lazy"
-                        src="images/11.jpg"
-                        alt="Gallery Pic 11"
-                      />
-                    </a>
-                  </div>
-
-                  <div class="card">
-                    <a
-                      href="images/12.jpg"
-                      data-toggle="lightbox"
-                      data-gallery="ww-gallery"
-                    >
-                      <img
-                        class="img-fluid"
-                        loading="lazy"
-                        src="images/12.jpg"
-                        alt="Gallery Pic 12"
-                      />
-                    </a>
-                  </div>
-
-                  <div class="card">
-                    <a
-                      href="images/13.jpg"
-                      data-toggle="lightbox"
-                      data-gallery="ww-gallery"
-                    >
-                      <img
-                        class="img-fluid"
-                        loading="lazy"
-                        src="images/13.jpg"
-                        alt="Gallery Pic 13"
-                      />
-                    </a>
-                  </div>
-
-                  <div class="card">
-                    <a
-                      href="images/14.jpg"
-                      data-toggle="lightbox"
-                      data-gallery="ww-gallery"
-                    >
-                      <img
-                        class="img-fluid"
-                        loading="lazy"
-                        src="images/14.jpg"
-                        alt="Gallery Pic 14"
-                      />
-                    </a>
-                  </div>
-                  <div class="card">
-                    <a
-                      href="images/15.jpg"
-                      data-toggle="lightbox"
-                      data-gallery="ww-gallery"
-                    >
-                      <img
-                        class="img-fluid"
-                        loading="lazy"
-                        src="images/15.jpg"
-                        alt="Gallery Pic 14"
-                      />
-                    </a>
-                  </div> -->
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- <section class="ftco-section" id="wish-section">
-          <div class="container">
-            <div class="row">
-              <div id="parent-carousel" class="col-md-12">
-                <div class="featured-carousel owl-carousel"></div>
-              </div>
-            </div>
-          </div>
-        </section> -->
-        <!-- <div class="ww-section ww-rsvp-detail text-white" id="rsvp">
-          <div class="container" data-aos="zoom-in-up" data-aos-duration="1000">
-            <div class="col text-center">
-              <h2
-                class="h1 ww-title pb-3"
-                data-aos="zoom-in-down"
-                data-aos-duration="1000"
-              >
-                Lời chúc tốt đẹp
-              </h2>
-              <h5 class="h5">
-                Cảm ơn bạn rất nhiều vì những lời chúc tốt đẹp nhất đến đám cưới
-                của chúng mình!
-              </h5>
-            </div>
-            <div class="row ww-rsvp-form">
-              <div class="col-md-10">
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col md-12 pb-3">
-                      <div class="form-group">
-                        <label for="name-input">Tên của bạn</label>
-                        <input
-                          class="form-control"
-                          id="name-input"
-                          type="text"
-                          name="name"
-                          required="required"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col">
-                      <div class="form-group">
-                        <label for="message-input">Lời chúc</label>
-                        <textarea
-                          class="form-control"
-                          id="message-input"
-                          name="message"
-                          rows="4"
-                          required="required"
-                        ></textarea>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col text-center">
-                      <button
-                        class="btn btn-primary btn-submit"
-                        type="button"
-                        id="wish-btn"
-                      >
-                        Gửi
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div> -->
+  <body>
+    <div class="container">
+      <h2>Nhập tên người chơi</h2>
+      <div class="player-form" id="playerForm">
+        <input
+          type="text"
+          placeholder="Tên người chơi 1"
+          oninput="addPlayerInput(this)"
+        />
       </div>
+      <h2>Số tiền chơi</h2>
+      <div class="amount-inputs">
+        <input type="number" id="leafAmount" placeholder="Ăn lá (VNĐ)" />
+        <input type="number" id="knotAmount" placeholder="Chốt (VNĐ)" />
+        <input type="number" id="winAmount" placeholder="Ù (VNĐ)" />
+        <input type="number" id="penaltyAmount" placeholder="Ù đền (VNĐ)" />
+      </div>
+      <!-- <button onclick="startGame()">Start</button> -->
+      <button class="button-74" role="button" onclick="startGame()">
+        Bắt đầu
+      </button>
     </div>
-    <div
-      class="toast fixed-bottom fixed-left"
-      role="alert"
-      aria-live="assertive"
-      aria-atomic="true"
-      data-delay="5000"
+
+    <div class="game-board" id="playerBoard"></div>
+
+    <button
+      id="undoButton"
+      style="
+        display: none;
+        margin: 10px;
+        padding: 10px;
+        background-color: #607d8b;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      "
+      onclick="undoLastAction()"
     >
-      <div class="toast-header bg-success text-white">
-        <strong class="mr-auto">Gửi lời chúc thành công!</strong>
-        <button
-          type="button"
-          class="ml-2 mb-1 close"
-          data-dismiss="toast"
-          aria-label="Close"
-        >
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="toast-body">
-        Cảm ơn vì đã gửi món quà ý nghĩa này cho chúng mình &hearts;
-      </div>
-    </div>
-    <div
-      class="modal fade"
-      id="modalCenter"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="modalCenterTitle"
-      aria-hidden="true"
+      Quay lại
+    </button>
+    <button
+      id="resetButton"
+      style="
+        display: none;
+        margin: 10px;
+        padding: 10px;
+        background-color: #ff5722;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      "
+      onclick="resetGame()"
     >
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-            <button
-              type="button"
-              class="close"
-              data-dismiss="modal"
-              aria-label="Close"
-            >
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <div class="row mb-3">
-              <div class="col-md-8 offset-md-2">
-                <img style="width: 100%; height: auto" src="" id="bankingQR" />
-              </div>
-            </div>
-            <p id="textBank">Ngân hàng:</p>
-            <p id="bankId">Số tài khoản:</p>
-            <p id="bankOwner">Chủ tài khoản:</p>
-          </div>
-          <!-- <div class="modal-footer">
-            <button type="button" class="btn btn-success" data-dismiss="modal">Xin cảm ơn</button>
-          </div> -->
-        </div>
-      </div>
-    </div>
-    <div
-      class="bii-player"
-      style="position: fixed; bottom: 20px; right: 20px; z-index: 9999"
-    >
-      <button
-        id="speaker"
-        style="
-          background-color: rgba(0, 0, 0, 0);
-          width: 50px;
-          height: 50px;
-          background-image: url('images/spearker-icon.png');
-          background-size: cover;
-          border: none;
-          outline: none;
-        "
-        onclick="playPause();"
-      ></button>
-    </div>
-    <script src="scripts/jquery.min.js"></script>
-    <script src="scripts/bootstrap.min.js"></script>
-    <script src="scripts/owl.carousel.min.js"></script>
-    <script src="scripts/bootstrap.bundle.min.js?ver=1.1.0"></script>
-    <script src="scripts/aos.js?ver=1.1.0"></script>
-    <script src="scripts/ekko-lightbox.min.js?ver=1.1.0"></script>
-    <script src="scripts/main.js?ver=1.1.0"></script>
+      Tạo mới
+    </button>
+
     <script>
-      var audioPlayer = document.createElement("AUDIO");
-      audioPlayer.style.display = "none";
+      let players = [];
+      let playerHistory = [];
+      let lastActions = [];
 
-      setTimeout(function () {
-        if (audioPlayer.canPlayType("audio/mpeg")) {
-          audioPlayer.setAttribute("src", "At-My-Worst.mp3");
-          document.getElementsByClassName("bii-player")[0].style.display =
-            "block";
-        }
-        audioPlayer.volume = 0.3;
-        audioPlayer.setAttribute("controls", "controls");
-        document.body.appendChild(audioPlayer);
-      }, 1000);
+      // Khôi phục dữ liệu từ localStorage nếu có
+      window.onload = function () {
+        const savedGameState = localStorage.getItem("gameState");
+        if (savedGameState) {
+          const gameState = JSON.parse(savedGameState);
+          players = gameState.players;
+          playerHistory = gameState.playerHistory;
+          lastActions = gameState.lastActions;
 
-      function playPause() {
-        document
-          .getElementsByClassName("bii-player")[0]
-          .classList.remove("show-sec");
-        if (audioPlayer.paused) {
-          audioPlayer.play();
-          $("#speaker").css("background-image", 'url("images/mute.png")');
-        } else {
-          audioPlayer.pause();
-          $("#speaker").css(
-            "background-image",
-            'url("images/spearker-icon.png")'
-          );
+          document.querySelector(".container").style.display = "none";
+          document.querySelector(".amount-inputs").style.display = "none";
+          document.querySelector(".game-board").style.display = "grid";
+          document.getElementById("undoButton").style.display = "block";
+          document.getElementById("resetButton").style.display = "block";
+
+          renderPlayers();
         }
-      }
-      function banking(receiver) {
-        if (receiver === "lamnx") {
-          $("#exampleModalLongTitle").text("Mừng cưới chú rể");
-          $("#textBank").text("Ngân hàng: MSB");
-          $("#bankId").text("Số tài khoản: 0983998197");
-          $("#bankOwner").text("Chủ tài khoản: Nguyễn Văn Cường");
-          $("#bankingQR").attr("src", "images/lam-banking.PNG");
-        } else {
-          $("#exampleModalLongTitle").text("Mừng cưới cô dâu");
-          $("#textBank").text("Ngân hàng: VIETCOMBANK");
-          $("#bankId").text("Số tài khoản: 0551000327589");
-          $("#bankOwner").text("Chủ tài khoản: Tô Thị Ngọc Hà");
-          $("#bankingQR").attr("src", "images/giang-banking.PNG");
-        }
-        $("#modalCenter").modal("show");
-      }
-      wishImg = [
-        "z4240863132580_fe86115868893d2845b8ee4b82f0a500.jpg",
-        "z4240863139345_6e84a7d5acfe82c14a978223f9ee02f2.jpg",
-        "z4240863140515_7ee39a68eac756f1d5342f2bd9b136c6.jpg",
-        "z4240863148469_b66fe2745fe72ba797917fa92bdd02cd.jpg",
-        "z4240863154307_58c6682912e1d025288a54d5eda8b601.jpg",
-        "z4240863155622_b7b7035ae8117a32eabf12e8feed7b53.jpg",
-        "z4240863163769_5daee191b6440021b6ef9a2c8a80bbcd.jpg",
-        "z4251179812155_50b3b8578806374e4ca37acb20e4f52d.jpg",
-        "z4251179814500_fa1bb66167f2dcd7ef831cfb97fa650f.jpg",
-        "z4251179823399_3c2adaecdb5e1301c6816ab73dd1c1e3.jpg",
-        "z4251179828759_d09cc82e6d5f9dda9894acb77f6a9ca0.jpg",
-        "z4251179831712_482b323244decbce7e22288e26fcdaa4.jpg",
-        "z4251179831838_4604c61958932096c01ca451bd2dfa32.jpg",
-        "z4251179839149_0a0bfb933c5a8a07e095ea2391aa8552.jpg",
-        "z4251179843358_2e069984a32b98ebadb2aa66998fceb7.jpg",
-        "z4251179846305_3eaea0dfaf0070c878959cd5fb24460e.jpg",
-        "z4251179850320_d97f7f85eb133f093e97682e58b3bafe.jpg",
-        "z4251179857488_948e0f5ca518d68e1dc7f89309fba868.jpg",
-      ];
-      wishArr = [];
-      $(document).ready(function () {
-        var myInterval = setInterval(function () {
-          if (document.querySelector(".bii-player")) {
-            setTimeout(function () {
-              document
-                .getElementsByClassName("bii-player")[0]
-                .classList.add("show-sec");
-            }, 2000);
-            setTimeout(function () {
-              document
-                .getElementsByClassName("bii-player")[0]
-                .classList.remove("show-sec");
-            }, 7000);
-            clearInterval(myInterval);
-          }
-        }, 200);
-        var fullHeight = function () {
-          $(".js-fullheight").css("height", $(window).height());
-          $(window).resize(function () {
-            $(".js-fullheight").css("height", $(window).height());
-          });
-        };
-        fullHeight();
-        fetch(
-          "https://n8nig3qvvl.execute-api.ap-southeast-1.amazonaws.com/wedding",
-          {
-            method: "GET",
-          }
-        )
-          .then((response) => {
-            if (response.ok) {
-              console.log("API call successful");
-              response.json().then((data) => {
-                wishArr = data;
-                createCarousel();
-              });
-            } else {
-              console.error("API call failed");
-            }
-          })
-          .catch((error) => {
-            console.error("API call failed", error);
-          });
-      });
-      $(document).ready(function () {
-        $("#wish-btn").click(function () {
-          var name = $("#name-input").val();
-          var wish = $("#message-input").val();
-          var data = {
-            name: name,
-            wish: wish,
+      };
+
+      function addPlayerInput(input) {
+        const value = input.value.trim();
+        if (value && input.nextElementSibling === null) {
+          const newInput = document.createElement("input");
+          newInput.type = "text";
+          newInput.placeholder = `Tên người chơi ${players.length + 2}`;
+          newInput.oninput = function () {
+            addPlayerInput(this);
           };
-          var url =
-            "https://n8nig3qvvl.execute-api.ap-southeast-1.amazonaws.com/wedding";
+          document.getElementById("playerForm").appendChild(newInput);
+        }
+      }
 
-          fetch(url, {
-            method: "POST",
-            mode: "cors",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(data),
+      function startGame() {
+        const inputs = document.querySelectorAll(".player-form input");
+        players = Array.from(inputs)
+          .map((input) => {
+            return { name: input.value, balance: 0 };
           })
-            .then(function (response) {
-              if (response.status === 200) {
-                wishArr.push({ id: "newlyCreated", name: name, wish: wish });
-                $(".toast").toast("show");
-                $("#name-input").val("");
-                $("#message-input").val("");
-                createCarousel();
-              } else {
-                throw new Error("Something went wrong on api server!");
-              }
-            })
-            .catch((error) => console.error(error));
-        });
-      });
-      function createCarousel() {
-        $("#parent-carousel").empty();
-        var div = $("<div/>").addClass("featured-carousel owl-carousel");
-        $("#parent-carousel").append(div);
-        var carousel = function () {
-          $(".featured-carousel").owlCarousel({
-            loop: true,
-            autoplay: false,
-            autoHeight: false,
-            margin: 30,
-            animateOut: "slideOutDown",
-            animateIn: "flipInX",
-            nav: true,
-            dots: true,
-            autoplayHoverPause: false,
-            items: 1,
-            navText: [
-              "<p><small></small><span class='ion-ios-arrow-round-back'></span></p>",
-              "<p><small></small><span class='ion-ios-arrow-round-forward'></span></p>",
-            ],
-            responsive: {
-              0: {
-                items: 1,
-              },
-              600: {
-                items: 1,
-              },
-              1000: {
-                items: 1,
-              },
-            },
-          });
-        };
-        console.log(wishArr);
-        wishArr.forEach((wish) => {
-          var newItem =
-            '<div class="item"><div class="row justify-content-center"><div class="col-md-11"><div class="testimony-wrap d-md-flex"><div class="img" style="background-image: url(images/' +
-            wishImg[Math.floor(Math.random() * wishImg.length)] +
-            ');"></div><div class="text text-center p-4 py-xl-5 px-xl-5 d-flex align-items-center"><div class="desc w-100"><p class="h3 mb-5">"' +
-            wish.wish +
-            '"</p><div class="pt-4"><p class="name mb-0">' +
-            wish.name +
-            '</p><span class="position"></span></div></div></div></div></div></div></div>';
+          .filter((player) => player.name);
 
-          $(".owl-carousel").append($(newItem));
+        // Kiểm tra số lượng người chơi
+        if (players.length < 2) {
+          alert("Cần ít nhất 2 người chơi!");
+          return;
+        }
+        // Kiểm tra các ô nhập số tiền
+        const leafAmount = parseInt(
+          document.getElementById("leafAmount").value
+        );
+        const knotAmount = parseInt(
+          document.getElementById("knotAmount").value
+        );
+        const winAmount = parseInt(document.getElementById("winAmount").value);
+        const penaltyAmount = parseInt(
+          document.getElementById("penaltyAmount").value
+        );
+
+        if (
+          isNaN(leafAmount) ||
+          leafAmount <= 0 ||
+          isNaN(knotAmount) ||
+          knotAmount <= 0 ||
+          isNaN(winAmount) ||
+          winAmount <= 0 ||
+          isNaN(penaltyAmount) ||
+          penaltyAmount <= 0
+        ) {
+          alert("Vui lòng nhập đầy đủ số tiền cho các ô!");
+          return;
+        }
+        // playerHistory = players.map((player) => [{ balance: player.balance }]);
+        lastActions = [];
+
+        document.querySelector(".container").style.display = "none";
+        document.querySelector(".amount-inputs").style.display = "none";
+        document.querySelector(".game-board").style.display = "grid";
+        document.getElementById("undoButton").style.display = "block";
+        document.getElementById("resetButton").style.display = "block";
+
+        saveGameState();
+        renderPlayers();
+      }
+
+      function renderPlayers() {
+        const gameBoard = document.querySelector(".game-board");
+        gameBoard.innerHTML = "";
+
+        players.forEach((player, index) => {
+          const playerBox = document.createElement("div");
+          playerBox.className = "player-box";
+          playerBox.innerHTML = `
+                    <span>${player.name}</span><br>
+                    <span>Số tiền: ${player.balance} VND</span>
+                    <div class="action-buttons">
+                        <button class="btn-leaf" onclick="updateBalance(${index}, 'leaf')">Ăn lá</button>
+                        <button class="btn-knot" onclick="updateBalance(${index}, 'knot')">Chốt</button>
+                        <button class="btn-win" onclick="updateBalance(${index}, 'win')">Ù</button>
+                    </div>
+                `;
+          gameBoard.appendChild(playerBox);
         });
-        carousel();
+      }
+
+      function updateBalance(playerIndex, action) {
+        const leafAmount =
+          parseInt(document.getElementById("leafAmount").value) || 0;
+        const knotAmount =
+          parseInt(document.getElementById("knotAmount").value) || 0;
+        const winAmount =
+          parseInt(document.getElementById("winAmount").value) || 0;
+        const penaltyAmount =
+          parseInt(document.getElementById("penaltyAmount").value) || 0;
+
+        const currentState = JSON.parse(JSON.stringify(players));
+        playerHistory.push(currentState);
+
+        switch (action) {
+          case "leaf":
+            players[playerIndex].balance += leafAmount;
+            if (playerIndex > 0) {
+              players[playerIndex - 1].balance -= leafAmount;
+            }
+            break;
+          case "knot":
+            players[playerIndex].balance += knotAmount;
+            if (playerIndex > 0) {
+              players[playerIndex - 1].balance -= knotAmount;
+            }
+            break;
+          case "win":
+            players.forEach((_, index) => {
+              if (index !== playerIndex) {
+                players[index].balance -= winAmount;
+              }
+            });
+            players[playerIndex].balance += winAmount;
+            break;
+          case "penalty":
+            players.forEach((_, index) => {
+              if (index !== playerIndex) {
+                players[index].balance -= penaltyAmount;
+              }
+            });
+            players[playerIndex].balance += penaltyAmount;
+            break;
+        }
+
+        lastActions.push({ playerIndex, action });
+        saveGameState(); // Lưu trạng thái mới sau khi hành động
+        renderPlayers();
+      }
+
+      function undoLastAction() {
+        debugger;
+        if (playerHistory.length > 1) {
+          playerHistory.pop();
+          players = JSON.parse(
+            JSON.stringify(playerHistory[playerHistory.length - 1])
+          );
+          lastActions.pop();
+          saveGameState(); // Lưu lại sau khi quay lại
+          renderPlayers();
+        } else {
+          alert("Không thể quay lại thêm nữa!");
+        }
+      }
+
+      function saveGameState() {
+        const gameState = {
+          players: players,
+          playerHistory: playerHistory,
+          lastActions: lastActions,
+        };
+        localStorage.setItem("gameState", JSON.stringify(gameState));
+      }
+
+      function resetGame() {
+    // Xác nhận trước khi reset
+    const confirmReset = confirm("Bạn có chắc chắn muốn reset trò chơi?");
+    if (confirmReset) {
+      localStorage.removeItem("gameState");
+      location.reload(); // Tải lại trang để quay về màn hình nhập tên
+    }
+  }
+
+      function renderPlayers() {
+        const gameBoard = document.getElementById("playerBoard");
+        gameBoard.innerHTML = "";
+
+        players.forEach((player, index) => {
+          const playerBox = document.createElement("div");
+          playerBox.className = "player-box";
+          playerBox.setAttribute("data-id", index);
+          playerBox.innerHTML = `
+            <span>${player.name}</span><br>
+            <span>Số tiền: ${player.balance} VND</span>
+            <div class="action-buttons">
+                <button class="btn-leaf" onclick="updateBalance(${index}, 'leaf')">Ăn lá</button>
+                <button class="btn-knot" onclick="updateBalance(${index}, 'knot')">Chốt</button>
+                <button class="btn-win" onclick="updateBalance(${index}, 'win')">Ù</button>
+            </div>
+        `;
+          gameBoard.appendChild(playerBox);
+        });
+
+        // Sắp xếp vị trí người chơi bằng cách kéo thả
+        new Sortable(gameBoard, {
+          animation: 150,
+          onEnd: function (evt) {
+            const itemEl = evt.item;
+            const newIndex = evt.newIndex;
+            const oldIndex = evt.oldIndex;
+
+            // Cập nhật lại danh sách người chơi theo vị trí mới
+            const movedPlayer = players.splice(oldIndex, 1)[0];
+            players.splice(newIndex, 0, movedPlayer);
+
+            // Cập nhật lịch sử sau khi thay đổi vị trí
+            playerHistory.push(JSON.parse(JSON.stringify(players)));
+            saveGameState();
+            renderPlayers();
+          },
+        });
       }
     </script>
   </body>
